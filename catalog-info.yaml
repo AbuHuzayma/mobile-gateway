@@ -1,20 +1,37 @@
 apiVersion: backstage.io/v1alpha1
-kind: API
+kind: Component
 metadata:
   name: mobile-gateway
   description: API Gateway for mobile requests
 spec:
-  type: openapi
+  type: service
   lifecycle: production
   owner: group:default/integration-team
   providesApis:
-    - api:default/mobile-app
+    - api:default/mobile-gateway
   consumesApis:
-    - api:default/transfer-engine  # Calls Transfer Engine API
+    - api:default/transfer-engine
+    - api:default/beneficiary-service
+
+---
+apiVersion: backstage.io/v1alpha1
+kind: API
+metadata:
+  name: mobile-gateway
+  description: OpenAPI specification for Mobile Gateway
+spec:
+  type: openapi
+  lifecycle: production
+  owner: group:default/integration-team
   definition: |
     openapi: 3.0.0
     info:
       title: Mobile Gateway API
       version: 1.0.0
-    paths: {}
-
+    paths:
+      /api/v1/mobile/health:
+        get:
+          summary: Health check endpoint
+          responses:
+            '200':
+              description: OK
