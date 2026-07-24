@@ -1,30 +1,20 @@
 apiVersion: backstage.io/v1alpha1
-kind: Component
+kind: API
 metadata:
   name: mobile-gateway
   description: API Gateway for mobile requests
 spec:
-  type: service
-  lifecycle: production
-  owner: group:default/integration-team
-  providesApis:
-    - api:default/mobile-gateway-api
-  consumesApis:
-    - api:default/transfer-engine-api  # Calls Transfer Engine API
-
----
-apiVersion: backstage.io/v1alpha1
-kind: API
-metadata:
-  name: mobile-gateway-api
-  description: Public API exposed by Mobile Gateway
-spec:
   type: openapi
   lifecycle: production
   owner: group:default/integration-team
+  providesApis:
+    - api:default/mobile-app
+  consumesApis:
+    - api:default/transfer-engine  # Calls Transfer Engine API
   definition: |
     openapi: 3.0.0
     info:
       title: Mobile Gateway API
       version: 1.0.0
     paths: {}
+
