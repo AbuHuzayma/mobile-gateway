@@ -1,19 +1,4 @@
 apiVersion: backstage.io/v1alpha1
-kind: API
-metadata:
-  name: mobile-gateway-api
-  description: Public API exposed by Mobile Gateway
-spec:
-  type: openapi
-  lifecycle: production
-  owner: group:default/integration-team
-  definition: |
-    openapi: 3.0.0
-    info:
-      title: Mobile Gateway API
-      version: 1.0.0
-      
-apiVersion: backstage.io/v1alpha1
 kind: Component
 metadata:
   name: mobile-gateway
@@ -26,3 +11,16 @@ spec:
     - api:default/mobile-gateway-api
   consumesApis:
     - api:default/transfer-engine-api  # Calls the Transfer Engine API
+
+---
+apiVersion: backstage.io/v1alpha1
+kind: API
+metadata:
+  name: mobile-gateway-api
+  description: Public API exposed by Mobile Gateway
+spec:
+  type: openapi
+  lifecycle: production
+  owner: group:default/integration-team
+  definition:
+    $text: ./swagger.json  # Points to local swagger file or inline openapi YAML
