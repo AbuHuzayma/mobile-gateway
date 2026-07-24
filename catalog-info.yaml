@@ -10,7 +10,7 @@ spec:
   providesApis:
     - api:default/mobile-gateway-api
   consumesApis:
-    - api:default/transfer-engine-api  # Calls the Transfer Engine API
+    - api:default/transfer-engine-api  # Calls Transfer Engine API
 
 ---
 apiVersion: backstage.io/v1alpha1
@@ -22,5 +22,9 @@ spec:
   type: openapi
   lifecycle: production
   owner: group:default/integration-team
-  definition:
-    $text: ./swagger.json  # Points to local swagger file or inline openapi YAML
+  definition: |
+    openapi: 3.0.0
+    info:
+      title: Mobile Gateway API
+      version: 1.0.0
+    paths: {}
