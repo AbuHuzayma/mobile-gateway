@@ -3,6 +3,16 @@ kind: Component
 metadata:
   name: mobile-gateway
   description: API Gateway for mobile requests
+  tags:
+    - java
+    - nginx
+    - postgresql
+  labels:
+    criticality: tier-1
+  annotations:
+    hosting/cluster: "OpenShift"
+    database/name: "mobileGatewayDb"
+    database/type: "postgresql"
 spec:
   type: service
   lifecycle: production
